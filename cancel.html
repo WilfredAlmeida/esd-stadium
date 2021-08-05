@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Tickets</title>
+    <link rel="stylesheet" href="cancel.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section id="main">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html"><b>Home</b></a></li>
+                <li><a href="available.html"><b>Available Tickets</b></a></li>
+                <li><a href="book.html"><b>Book Tickets</b></a></li>
+                <li><a href="cancel.html" id="active"><b>Cancel Tickets</b></a></li>
+            </ul>
+        </nav>
+    </section>
+    <div class="text" id="devv">
+        
+            <p>
+                <label>Seat Number:
+                    <input id="seat" type="text" name="seat_number" required>
+                </label>
+            </p>
+            <p><button type="button" id="btn" class='mc' style="border-radius:8px;
+                background-color: #04AA6D;
+             border: none;
+             color: white;
+             padding: 20px;
+             text-align: center;
+             text-decoration: none;
+             display: inline-block;
+             font-size: 16px;
+             margin: 4px 2px;">Cancel Booking</button></p>
+       
+    </div>
+    <footer>
+        <div class="footcontent">
+            <p>© 2021 Group 12</p>
+        </div>
+    </footer>
+</body>
+
+<script>
+    async function sub(){
+        console.log("CALLED");
+        let cseat = document.getElementById('seat').value;
+        console.log(` ${cseat} `);
+
+
+        let url = `?seat_number=${document.getElementById('seat').value}`;
+        await fetch(`https://esdapi.herokuapp.com/deleteTicket${url}`).then((res)=>res.text()).then((result)=>{window.alert(result)})
+    }
+
+    var obj = document.getElementById('devv');
+    obj.querySelector(".mc").onclick = sub;
+</script>
+
+</html>

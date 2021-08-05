@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tickets</title>
+    <link rel="stylesheet" href="book.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <section id="main">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html"><b>Home</b></a></li>
+                <li><a href="available.html"><b>Available Tickets</b></a></li>
+                <li><a href="book.html" id="active"><b>Book Tickets</b></a></li>
+                <li><a href="cancel.html"><b>Cancel Tickets</b></a></li>
+            </ul>
+        </nav>
+    </section>
+
+        <p>
+            <label>Name:</label>
+            <input id='name' type="text" name="customer_name" required>
+        </p>
+
+        <p>
+            <label>Age:</label>
+            <input id='age' type="number" name="customer_age" required>
+        </p>
+
+        <p>
+            <label>Phone:</label>
+            <input id='phone' type="tel" name="phone_number" required>
+        </p>
+
+        <p>
+            <label>Email:</label>
+            <input id='text' type="email" name="email_address" required>
+        </p>
+
+        <p>
+            <label>Seat Number</label>
+            <input id='seat' type="text" name="seat_number" required>
+        </p>
+
+        <p><button id="btn" type="button" style="border-radius:8px;
+            background-color: #04AA6D;
+         border: none;
+         color: white;
+         padding: 20px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;">Submit Booking</button></p>
+
+    
+    <footer>
+        <div class="footcontent">
+            <p>© 2021 Group 12</p>
+        </div>
+    </footer>
+</body>
+
+<script>
+    async function sub(){
+        console.log("CALLED");
+        let cname = document.getElementById('name').value;
+        let cage = document.getElementById('age').value;
+        let cseat = document.getElementById('seat').value;
+        console.log(`${cname} ${cage} ${cseat} `);
+
+
+        let url = `?customer_name=${document.getElementById('name').value}&customer_age=${document.getElementById('age').value}&seat_number=${document.getElementById('seat').value}`;
+        await fetch(`https://esdapi.herokuapp.com/bookTicket${url}`).then((res)=>res.text()).then((result)=>{window.alert(result)})
+    }
+
+    document.getElementById('btn').onclick = sub;
+</script>
+
+</html>
